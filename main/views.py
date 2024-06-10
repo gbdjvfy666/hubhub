@@ -29,11 +29,14 @@ class AnnouncementCreateView(CreateView):
     model = Announcement
     fields = ['title', 'content', 'category', 'image', 'video_url']
     template_name = 'announcements/create.html'
-    success_url = '/main/'
+    success_url = 'announcement/<int:pk>/'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('announcement-detail', kwargs={'pk': self.object.pk})
 
 class AnnouncementUpdateView(UpdateView):
     model = Announcement
@@ -52,7 +55,7 @@ class AnnouncementListView(ListView):
 class AnnouncementDetailView(DetailView):
     model = Announcement
     template_name = 'announcements/detail.html'
-    context_object_name = 'announcements'
+    context_object_name = 'announcement'
 
 class ResponseCreateView(LoginRequiredMixin, CreateView):
     model = Response

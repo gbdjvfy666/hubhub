@@ -22,11 +22,11 @@ def register(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('announcement-list')
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'list.html')
