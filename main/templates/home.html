@@ -1,11 +1,31 @@
+<!-- templates/home.html -->
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME_PAGE</title>
+    <title>Блог</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <p>привет</p>
+    <header>
+        <div class="container">
+            <h1>Блог</h1>
+            {% if user.is_authenticated %}
+                <p>Пожалуйста</p>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <p>Пожалуйста, <a href="{% url 'register' %}">зарегистрируйтесь</a> или <a href="{% url 'login' %}">Водите</a>, чтобы создать объявление.</p>
+            {% endif %}
+        </div>
+    </header>
+    {% if user.is_authenticated %}
+    <p class="positioned">Добро пожаловать на доску объявлений, {{ user.username }}!</p>
+    {% endif %}
 </body>
 </html>

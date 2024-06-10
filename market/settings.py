@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -109,11 +110,12 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
 
+USE_I18N = True
+STATIC_URL = '/static/'
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = "/main"
+LOGIN_REDIRECT_URL = "/"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 

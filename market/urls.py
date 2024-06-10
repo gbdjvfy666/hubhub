@@ -4,7 +4,6 @@ from main import views as main_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("main/", include("main.urls")),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('register/', main_views.register, name='register'),
+    path("", include("main.urls")),
+    path('accounts/', include('accounts.urls')),
 ]
