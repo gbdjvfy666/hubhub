@@ -1,6 +1,4 @@
-<!-- templates/home.html -->
 {% load static %}
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Блог</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -17,19 +16,30 @@
         <div class="container">
             <h1>Блог</h1>
             {% if user.is_authenticated %}
-                <a href="{% url 'announcement-create' %}" class="main-button"><span>Создать объявление</span></a>
-                <a href="{% url 'home' %}" class="main-button"><i class="fa fa-bars"></i> Перейти к списку объявлений</a>
-                <a href="{% url 'response-list' %}" class="main-button">Мои отклики</a>
-                <a href="{% url 'logout' %}" class="main-button">выйти из аккаунта</a>
-                {% if user.is_authenticated %}
-                <a href="" class="main-button">{{ user.username }}</a>
-                {% endif %}
+                <a href="{% url 'announcement_list' %}" class="btn btn-primary main-button"><i class="fa fa-bars"></i> Перейти к списку объявлений</a>
+                <a href="{% url 'announcement-create' %}" class="btn btn-primary main-button"><span>Создать объявление</span></a>
+                <a href="{% url 'response-list' %}" class="btn btn-primary main-button">Мои отклики</a>
                 
+                
+                <!-- Кнопка с выпадающим меню -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle main-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Выйти из аккаунта</a>
+                        <a class="dropdown-item" href="{% url 'admin:index' %}">Админка</a>
+                    </div>
+                </div>
             {% else %}
-                <p>Пожалуйста, <a href="{% url 'register' %}">зарегистрируйтесь</a> или <a href="{% url 'login' %}">Водите</a>, чтобы создать объявление.</p>
+                <p>Пожалуйста, <a href="{% url 'register' %}">зарегистрируйтесь</a> или <a href="{% url 'login' %}">войдите</a>, чтобы создать объявление.</p>
             {% endif %}
         </div>
     </header>
 
+    <!-- Подключаем Bootstrap JS и jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

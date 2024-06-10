@@ -52,7 +52,7 @@ class AnnouncementListView(ListView):
 class AnnouncementDetailView(DetailView):
     model = Announcement
     template_name = 'announcements/detail.html'
-    context_object_name = 'announcement'
+    context_object_name = 'announcements'
 
 class ResponseCreateView(LoginRequiredMixin, CreateView):
     model = Response
