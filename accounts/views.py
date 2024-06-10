@@ -15,7 +15,7 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             success_url = reverse_lazy('home')
-            return redirect('home')  # укажите вашу страницу после успешной регистрации
+            return redirect('home')
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})

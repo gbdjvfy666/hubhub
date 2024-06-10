@@ -7,8 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Блог</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<!-- Bootstrap сетка -->
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+
+	<!-- Шрифты с Google Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+	<!-- Стили сайта -->
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -19,16 +31,18 @@
                 <a href="{% url 'announcement_list' %}" class="btn btn-primary main-button"><i class="fa fa-bars"></i> Перейти к списку объявлений</a>
                 <a href="{% url 'announcement-create' %}" class="btn btn-primary main-button"><span>Создать объявление</span></a>
                 <a href="{% url 'response-list' %}" class="btn btn-primary main-button">Мои отклики</a>
-                
-                
-                <!-- Кнопка с выпадающим меню -->
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle main-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ user.username }}
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="{% url 'logout' %}">Выйти из аккаунта</a>
-                        <a class="dropdown-item" href="{% url 'admin:index' %}">Админка</a>
+
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                              <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти из аккаунта</a></li>
+                              <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админка</a></li>
+                            </ul>
+
+
+   
                     </div>
                 </div>
             {% else %}
@@ -36,10 +50,10 @@
             {% endif %}
         </div>
     </header>
-
-    <!-- Подключаем Bootstrap JS и jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+z8Ld5+seprx0RmblFfCv/dUHyIhekFQhrphcJb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-pzjw8f+7OK3qtn4q9BRJv5fF5JFiG7pMDL/W9suB/DjPhI+xrDk4t0t6XvhdnEzx" crossorigin="anonymous"></script>
+    
 </body>
 </html>
+
