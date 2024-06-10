@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список объявлений</title>
+    <a href="{% url 'home' %}" class="home-button"><i class="fa fa-home"></i> Главная</a>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Список объявлений</h1>
+        {% if announcements %}
+            <div class="list-group">
+                
+                {% for announcement in announcements %}
+                    <a href="{% url 'announcement-detail' announcement.pk %}" class="list-group-item list-group-item-action">
+                        <h5 class="mb-1">{{ announcement.title }}</h5>
+                        <p class="mb-1">{{ announcement.content|truncatewords:20 }}</p>
+                        <small>Категория: {{ announcement.category.name }}</small>
+                        
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Нет объявлений.</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
