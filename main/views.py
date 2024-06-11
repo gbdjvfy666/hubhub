@@ -22,9 +22,6 @@ from django.core.mail import send_mail
 
 User = get_user_model()
 
-def home(request):
-    return render(request, 'home.html')
-
 class AnnouncementCreateView(CreateView):
     model = Announcement
     fields = ['title', 'content', 'category', 'image', 'video_url']

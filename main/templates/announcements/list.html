@@ -31,13 +31,25 @@
         <h1>Список объявлений</h1>
         {% if announcements %}
             <div class="list-group">
-                
                 {% for announcement in announcements %}
                     <a href="{% url 'announcement-detail' announcement.pk %}" class="list-group-item list-group-item-action">
                         <h5 class="mb-1">{{ announcement.title }}</h5>
                         <p class="mb-1">{{ announcement.content|truncatewords:20 }}</p>
                         <small>Категория: {{ announcement.category.name }}</small>
                         
+                {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'create-response' announcement.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <button type="submit" class="comment-button">коментарий</button> 
+                <button type="submit" ><a href="{% url 'announcement_update' announcement.pk %}" class="comment-button">Редактировать</a></button> 
+
+                
+            </form>
+        {% else %}
+            <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a> чтобы оставить отклик.</p>
+        {% endif %}
                     </a>
                 {% endfor %}
             </div>
